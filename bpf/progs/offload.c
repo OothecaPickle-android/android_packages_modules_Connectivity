@@ -458,7 +458,7 @@ static inline __always_inline int do_forward4_bottom(struct __sk_buff* skb,
     // ipv4 header remains 0), the overall checksum of the entire packet does not change.
     const int sz2 = sizeof(__be16);
     const __be16 old_ttl_proto = *(__be16 *)&ip->ttl;
-    const __be16 new_ttl_proto = old_ttl_proto - htons(0x0100);
+    const __be16 new_ttl_proto = old_ttl_proto;
     bpf_l3_csum_replace(skb, ETH_IP4_OFFSET(check), old_ttl_proto, new_ttl_proto, sz2);
     bpf_skb_store_bytes(skb, ETH_IP4_OFFSET(ttl), &new_ttl_proto, sz2, 0);
 
